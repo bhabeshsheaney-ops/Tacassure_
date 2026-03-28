@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Estimate indicative annual savings when you delegate hours to a Tacassure virtual assistant. Illustrative model — not a quote.">
+  <meta name="description" content="Estimate indicative annual savings when you delegate tasks to a Tacassure virtual assistant. Add tasks, hours, and your rates — illustrative model.">
   <title>VA savings calculator — Tacassure</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,41 +34,43 @@
     <header class="calc-header">
       <p class="calc-eyebrow">Tools</p>
       <h1 class="calc-title">Savings calculator</h1>
-      <p class="calc-lede">Two inputs, one outcome. We compare an indicative UK role rate to a £9/hr VA benchmark so you can sense-check delegation — before you commit calendar time.</p>
+      <p class="calc-lede">List the work you’d delegate, your hours per week, and what that time costs you today. We compare it to our VA benchmark — then hit calculate to see indicative savings.</p>
     </header>
 
     <div class="calc-layout">
       <section class="calc-card calc-card--inputs" aria-labelledby="calc-inputs-title">
-        <h2 id="calc-inputs-title" class="calc-voice">Model</h2>
+        <h2 id="calc-inputs-title" class="calc-voice">Your tasks</h2>
 
-        <div class="calc-field">
-          <div class="calc-field__label-row">
-            <label class="calc-field__label" for="calc-role">Role type</label>
-            <span class="calc-benchmark" id="calc-benchmark" aria-live="polite"></span>
-          </div>
-          <div class="calc-select-wrap">
-            <select id="calc-role" class="calc-select" name="role" aria-describedby="calc-hint-role"></select>
-          </div>
-          <p id="calc-hint-role" class="calc-hint">Benchmarks are illustrative averages for professional services — not salary advice.</p>
+        <div class="calc-callout" role="note">
+          <p class="calc-callout__text">List each task, weekly hours, and <strong>your</strong> £/hr for that work. Our experienced VAs are typically <strong>£8–10/hr</strong>; this model uses <strong>£9/hr</strong>. Illustrative only — not a quote.</p>
         </div>
 
-        <div class="calc-field">
-          <div class="calc-field__label-row">
-            <label class="calc-field__label" for="calc-hours">Hours delegated per week</label>
-            <span class="calc-hours-badge"><span id="calc-hours-out">20</span> h</span>
+        <p id="calc-form-error" class="calc-form-error" role="alert" hidden></p>
+
+        <div class="calc-task-list" role="group" aria-label="Tasks to delegate">
+          <div class="calc-task-list__headers" aria-hidden="true">
+            <span class="calc-task-list__headers-task">Task</span>
+            <div class="calc-task-list__headers-nums">
+              <span>Hrs / week</span>
+              <span>Your £/hr</span>
+              <span class="calc-task-list__headers-action"></span>
+            </div>
           </div>
-          <input type="range" id="calc-hours" class="calc-slider" name="hours" min="0" max="60" value="20" step="1" aria-valuemin="0" aria-valuemax="60" aria-valuenow="20" aria-label="Hours per week">
-          <div class="calc-slider-meta">
-            <span>0</span>
-            <span>60</span>
-          </div>
+          <div id="task-rows"></div>
+        </div>
+
+        <button type="button" class="calc-btn-add" id="calc-add-task">+ Add another task</button>
+
+        <div class="calc-actions">
+          <button type="button" class="calc-btn-calculate" id="calc-submit">Calculate my savings</button>
+          <button type="button" class="calc-btn-clear" id="calc-clear">Clear form</button>
         </div>
       </section>
 
-      <section class="calc-card calc-card--result" aria-labelledby="calc-result-label" aria-live="polite">
+      <section class="calc-card calc-card--result" aria-labelledby="calc-result-label">
         <div class="calc-result__head">
           <p id="calc-result-label" class="calc-result__kpi-label">Estimated annual savings</p>
-          <p class="calc-kpi" id="calc-savings">£0</p>
+          <p class="calc-kpi" id="calc-savings" aria-live="polite">£0</p>
         </div>
         <ul class="calc-result__stats">
           <li class="calc-stat">
@@ -81,8 +83,8 @@
           </li>
         </ul>
         <div class="calc-result__body">
-          <p class="calc-meta" id="calc-meta">Select a role to apply an indicative UK benchmark.</p>
-          <p class="calc-insight" id="calc-insight">Select a role to see how indicative UK rates compare to a £9/hr VA.</p>
+          <p class="calc-meta" id="calc-meta">Add tasks and press Calculate my savings to see totals.</p>
+          <p class="calc-insight" id="calc-insight">Your results will appear here after you calculate.</p>
           <a class="calc-cta" id="calc-booking" href="#" target="_blank" rel="noopener noreferrer">
             Book a call
             <span class="calc-cta__arrow" aria-hidden="true">→</span>
