@@ -3,11 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0;url=../index.html#savings-calculator">
-  <title>Redirecting…</title>
-  <link rel="canonical" href="../index.html#savings-calculator">
+  <meta name="description" content="Estimate indicative annual savings when you delegate hours to a Tacassure virtual assistant. Illustrative model — not a quote.">
+  <title>VA savings calculator — Tacassure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="calculator.css">
 </head>
 <body>
-  <p>The VA savings calculator lives on the main Tacassure site. <a href="../index.html#savings-calculator">Continue to the calculator</a>.</p>
+  <a class="calc-skip" href="#calc-main">Skip to calculator</a>
+  <div class="calc-bg" aria-hidden="true"></div>
+
+  <header class="calc-topbar">
+    <a class="calc-topbar__brand" href="../index.html">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14 8v32M14 8h12c6 0 10 4 10 10s-4 10-10 10H14" stroke="url(#calcLogoGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="calcLogoGrad" x1="14" y1="8" x2="36" y2="40" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#4554A6"/>
+            <stop offset="1" stop-color="#f7abae"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span><span class="tac">tac</span><span class="assure">assure</span></span>
+    </a>
+    <a class="calc-topbar__cta" id="calc-booking-top" href="https://outlook.office.com/book/TacassureBookings@sheaney.ie/s/p-v-cciapUqYMl3AGRYfKw2" target="_blank" rel="noopener noreferrer">Book a call</a>
+  </header>
+
+  <main class="calc-container" id="calc-main">
+    <header class="calc-header">
+      <p class="calc-eyebrow">Tools</p>
+      <h1 class="calc-title">Savings calculator</h1>
+      <p class="calc-lede">Two inputs, one outcome. We compare an indicative UK role rate to a £9/hr VA benchmark so you can sense-check delegation — before you commit calendar time.</p>
+    </header>
+
+    <div class="calc-layout">
+      <section class="calc-card calc-card--inputs" aria-labelledby="calc-inputs-title">
+        <h2 id="calc-inputs-title" class="calc-voice">Model</h2>
+
+        <div class="calc-field">
+          <div class="calc-field__label-row">
+            <label class="calc-field__label" for="calc-role">Role type</label>
+            <span class="calc-benchmark" id="calc-benchmark" aria-live="polite"></span>
+          </div>
+          <div class="calc-select-wrap">
+            <select id="calc-role" class="calc-select" name="role" aria-describedby="calc-hint-role"></select>
+          </div>
+          <p id="calc-hint-role" class="calc-hint">Benchmarks are illustrative averages for professional services — not salary advice.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-field__label-row">
+            <label class="calc-field__label" for="calc-hours">Hours delegated per week</label>
+            <span class="calc-hours-badge"><span id="calc-hours-out">20</span> h</span>
+          </div>
+          <input type="range" id="calc-hours" class="calc-slider" name="hours" min="0" max="60" value="20" step="1" aria-valuemin="0" aria-valuemax="60" aria-valuenow="20" aria-label="Hours per week">
+          <div class="calc-slider-meta">
+            <span>0</span>
+            <span>60</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="calc-card calc-card--result" aria-labelledby="calc-result-label" aria-live="polite">
+        <div class="calc-result__head">
+          <p id="calc-result-label" class="calc-result__kpi-label">Estimated annual savings</p>
+          <p class="calc-kpi" id="calc-savings">£0</p>
+        </div>
+        <ul class="calc-result__stats">
+          <li class="calc-stat">
+            <span class="calc-stat__label">Weekly difference</span>
+            <span class="calc-stat__value" id="calc-weekly">£0/wk</span>
+          </li>
+          <li class="calc-stat">
+            <span class="calc-stat__label">VA rate (model)</span>
+            <span class="calc-stat__value">£9/hr</span>
+          </li>
+        </ul>
+        <div class="calc-result__body">
+          <p class="calc-meta" id="calc-meta">Select a role to apply an indicative UK benchmark.</p>
+          <p class="calc-insight" id="calc-insight">Select a role to see how indicative UK rates compare to a £9/hr VA.</p>
+          <a class="calc-cta" id="calc-booking" href="#" target="_blank" rel="noopener noreferrer">
+            Book a call
+            <span class="calc-cta__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <p class="calc-footnote">Figures are a client-side illustration only. Tacassure does not provide tax, employment, or legal advice. Commercial terms are agreed separately.</p>
+  </main>
+
+  <script src="calculator.js" defer></script>
 </body>
 </html>

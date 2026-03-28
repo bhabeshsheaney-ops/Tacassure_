@@ -3,19 +3,7 @@
 
   var BOOKING_URL =
     "https://outlook.office.com/book/TacassureBookings@sheaney.ie/s/p-v-cciapUqYMl3AGRYfKw2";
-  var VA_RATE = 9;
   var IO_THRESHOLD = 0.15;
-
-  var ROLES = [
-    { id: "ea", label: "Executive / Personal Assistant", ukRate: 52 },
-    { id: "admin", label: "Administrative & Office Support", ukRate: 38 },
-    { id: "bookkeeping", label: "Bookkeeping & Finance Admin", ukRate: 42 },
-    { id: "estimating", label: "Estimating & Tender Support", ukRate: 48 },
-    { id: "hr", label: "HR & Recruitment Coordination", ukRate: 44 },
-    { id: "marketing", label: "Marketing & Proposal Support", ukRate: 40 },
-    { id: "pa", label: "Project / Document Control", ukRate: 41 },
-    { id: "custom", label: "Blended / Custom role (blended rate)", ukRate: 45 },
-  ];
 
   function $(sel, root) {
     return (root || document).querySelector(sel);
@@ -23,31 +11,6 @@
 
   function $$(sel, root) {
     return Array.prototype.slice.call((root || document).querySelectorAll(sel));
-  }
-
-  function easeOutExpo(t) {
-    return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
-  }
-
-  function animateNumber(el, from, to, duration, formatter, tokenRef) {
-    formatter = formatter || function (n) {
-      return n;
-    };
-    if (tokenRef) {
-      tokenRef.v = (tokenRef.v || 0) + 1;
-    }
-    var id = tokenRef ? tokenRef.v : 1;
-    var start = null;
-    function step(ts) {
-      if (tokenRef && tokenRef.v !== id) return;
-      if (start === null) start = ts;
-      var p = Math.min((ts - start) / duration, 1);
-      var eased = easeOutExpo(p);
-      var val = from + (to - from) * eased;
-      el.textContent = formatter(val);
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
   }
 
   function initNav() {
@@ -309,128 +272,6 @@
     }
   }
 
-  function initCalculator() {
-    var select = $("#calc-role");
-    var slider = $("#calc-hours");
-    var hoursOut = $("#calc-hours-out");
-    var kpi = $("#calc-savings");
-    var meta = $("#calc-meta");
-    var ctaText = $("#calc-cta-text");
-
-    if (!select || !slider || !kpi) return;
-
-    select.innerHTML = "";
-    var ph = document.createElement("option");
-    ph.value = "";
-    ph.textContent = "Select a role type";
-    ph.disabled = true;
-    ph.selected = true;
-    select.appendChild(ph);
-    ROLES.forEach(function (r) {
-      var opt = document.createElement("option");
-      opt.value = String(r.ukRate);
-      opt.textContent = r.label;
-      opt.dataset.id = r.id;
-      select.appendChild(opt);
-    });
-
-    var lastAnnual = 0;
-    var lastFlashRounded = null;
-    var flashTimer = null;
-    var firstCalc = true;
-    var kpiAnimToken = { v: 0 };
-
-    function formatMoney(n) {
-      return (
-        "£" +
-        Math.round(n).toLocaleString("en-GB", { maximumFractionDigits: 0 })
-      );
-    }
-
-    function contextualCopy(annual, hours, ukRate) {
-      var weeklyYour = hours * ukRate;
-      var weeklyVa = hours * VA_RATE;
-      if (!ukRate) return "Choose a role to benchmark against a typical UK rate.";
-      if (hours <= 0) return "Adjust hours to see your estimated savings.";
-      if (annual <= 0)
-        return "Your selected rate is at or below our VA rate for this model — talk to us for a tailored quote.";
-      if (annual >= 45000)
-        return "That's the equivalent of a full-time hire. Let's talk.";
-      if (annual >= 20000)
-        return "Meaningful runway for your senior team — book a call to scope roles.";
-      return (
-        "You could redirect roughly " +
-        formatMoney(weeklyYour - weeklyVa) +
-        " per week into higher-value work."
-      );
-    }
-
-    function flashKpi() {
-      if (!kpi) return;
-      kpi.classList.remove("is-flash-peach", "is-flash-indigo");
-      void kpi.offsetWidth;
-      kpi.classList.add("is-flash-peach");
-      clearTimeout(flashTimer);
-      flashTimer = setTimeout(function () {
-        kpi.classList.remove("is-flash-peach");
-        kpi.classList.add("is-flash-indigo");
-        setTimeout(function () {
-          kpi.classList.remove("is-flash-indigo");
-        }, 200);
-      }, 120);
-    }
-
-    function update() {
-      var ukRate = parseFloat(select.value, 10);
-      if (isNaN(ukRate)) ukRate = 0;
-      var hours = parseFloat(slider.value, 10) || 0;
-      if (hoursOut) hoursOut.textContent = String(hours);
-
-      var weeklySave = Math.max(0, (ukRate - VA_RATE) * hours);
-      var annual = weeklySave * 52;
-
-      if (meta) {
-        if (!ukRate) {
-          meta.textContent =
-            "Select a role to apply an indicative UK benchmark rate. Illustrative only.";
-        } else {
-          meta.textContent =
-            "Based on " +
-            hours +
-            " hrs/week at an indicative UK rate of " +
-            formatMoney(ukRate) +
-            "/hr vs £" +
-            VA_RATE +
-            "/hr VA cost. Illustrative only.";
-        }
-      }
-      if (ctaText) ctaText.textContent = contextualCopy(annual, hours, ukRate);
-
-      var rounded = Math.round(annual);
-      if (!firstCalc && lastFlashRounded !== null && rounded !== lastFlashRounded) {
-        flashKpi();
-      }
-      lastFlashRounded = rounded;
-      firstCalc = false;
-
-      animateNumber(
-        kpi,
-        lastAnnual,
-        annual,
-        400,
-        function (v) {
-          return formatMoney(v);
-        },
-        kpiAnimToken
-      );
-      lastAnnual = annual;
-    }
-
-    select.addEventListener("change", update);
-    slider.addEventListener("input", update);
-    update();
-  }
-
   function initFaq() {
     var items = $$(".faq-item");
     items.forEach(function (item) {
@@ -478,7 +319,6 @@
     initServiceTabs();
     initProcessTimeline();
     initTestimonials();
-    initCalculator();
     initFaq();
   });
 })();
