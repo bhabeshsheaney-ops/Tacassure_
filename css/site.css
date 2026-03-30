@@ -1,4 +1,4 @@
-/* Tacassure — brand from client guideline. Typography: Michroma ≈ Fontatica; Inter ≈ SF Pro Display (Google Fonts; see index.html comment). */
+/* Tacassure — colours and layout. Typography: css/fonts.css (Fontatica + SF Pro Display per brand guide). */
 
 :root {
   --indigo: #4554a6;
@@ -17,8 +17,6 @@
   --shadow-lift: 0 20px 48px rgba(69, 84, 166, 0.12);
   --ease-hero: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-accordion: cubic-bezier(0.4, 0, 0.2, 1);
-  --font-display: "Michroma", sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
 }
 
 *,

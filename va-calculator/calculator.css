@@ -1,4 +1,4 @@
-/* Tacassure VA calculator — Tacassure brand tokens, product-grade layout discipline */
+/* Tacassure VA calculator — brand tokens (--font-body / --font-display from ../css/fonts.css) */
 
 :root {
   --indigo: #4554a6;
@@ -17,8 +17,6 @@
   --radius-pill: 999px;
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Michroma", var(--font-sans);
 }
 
 *,
@@ -41,7 +39,7 @@ body {
   margin: 0;
   min-height: 100vh;
   min-height: 100dvh;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.5;
   color: var(--charcoal);
@@ -145,7 +143,7 @@ body {
   justify-content: center;
   min-height: 44px;
   padding: 0 1.25rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.875rem;
   color: #fff;
@@ -363,7 +361,7 @@ body {
 
 .calc-input {
   width: 100%;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -391,7 +389,7 @@ body {
 }
 
 .calc-btn-remove {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 600;
   color: #b91c1c;
@@ -417,7 +415,7 @@ body {
 
 .calc-btn-add {
   align-self: flex-start;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 600;
   color: #fff;
@@ -457,7 +455,7 @@ body {
 .calc-btn-calculate {
   flex: 1;
   min-width: min(100%, 200px);
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
@@ -482,7 +480,7 @@ body {
 }
 
 .calc-btn-clear {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--charcoal);
@@ -605,7 +603,7 @@ body {
   width: 100%;
   min-height: 52px;
   padding: 0 1.5rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 1rem;
   color: #fff;
