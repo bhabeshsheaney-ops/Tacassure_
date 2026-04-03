@@ -109,6 +109,47 @@
     });
   }
 
+  function initHeroCounters() {
+    var el = $("[data-hero-count]");
+    if (!el) return;
+    var target = parseInt(el.getAttribute("data-hero-count"), 10);
+    var duration = 1200;
+    var started = false;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.textContent = "\u00A3" + target + "k";
+      return;
+    }
+
+    var visual = $(".hero__visual");
+    if (!visual) return;
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && !started) {
+            started = true;
+            var start = null;
+            function step(ts) {
+              if (!start) start = ts;
+              var elapsed = ts - start;
+              var progress = Math.min(elapsed / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              var current = Math.round(eased * target);
+              el.textContent = "\u00A3" + current + "k";
+              if (progress < 1) requestAnimationFrame(step);
+            }
+            setTimeout(function () {
+              requestAnimationFrame(step);
+            }, 600);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(visual);
+  }
+
   function initReveal() {
     var els = $$(".reveal, .stagger-children, .reveal-hero");
     if (!els.length) return;
@@ -219,59 +260,6 @@
     });
   }
 
-  function initTestimonials() {
-    var root = $("#testimonial-root");
-    if (!root) return;
-
-    var slides = $$(".testimonial-slide", root);
-    var bar = $(".testimonial-progress__bar", root);
-    var duration = 7000;
-    var current = 0;
-    var rafId = null;
-    var startTime = null;
-    var paused = false;
-
-    function show(i) {
-      slides.forEach(function (s, j) {
-        s.classList.toggle("is-active", j === i);
-      });
-      current = i;
-      startTime = null;
-      if (bar) bar.style.width = "0%";
-    }
-
-    function tick(ts) {
-      if (paused) {
-        rafId = requestAnimationFrame(tick);
-        return;
-      }
-      if (startTime === null) startTime = ts;
-      var elapsed = ts - startTime;
-      var p = Math.min((elapsed / duration) * 100, 100);
-      if (bar) bar.style.width = p + "%";
-      if (elapsed >= duration) {
-        show((current + 1) % slides.length);
-        startTime = ts;
-      }
-      rafId = requestAnimationFrame(tick);
-    }
-
-    show(0);
-    rafId = requestAnimationFrame(tick);
-
-    var card = $(".testimonial-card", root);
-    if (card) {
-      card.addEventListener("mouseenter", function () {
-        paused = true;
-      });
-      card.addEventListener("mouseleave", function () {
-        paused = false;
-        startTime = null;
-        if (bar) bar.style.width = "0%";
-      });
-    }
-  }
-
   function initFaq() {
     var items = $$(".faq-item");
     items.forEach(function (item) {
@@ -315,10 +303,10 @@
     initBookingLinks();
     initNav();
     initScrollSpy();
+    initHeroCounters();
     initReveal();
     initServiceTabs();
     initProcessTimeline();
-    initTestimonials();
     initFaq();
   });
 })();

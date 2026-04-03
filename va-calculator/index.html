@@ -9,27 +9,67 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/site.css">
   <link rel="stylesheet" href="calculator.css">
 </head>
-<body>
-  <a class="calc-skip" href="#calc-main">Skip to calculator</a>
+<body class="calc-page">
+  <a class="skip-link" href="#calc-main">Skip to calculator</a>
   <div class="calc-bg" aria-hidden="true"></div>
 
-  <header class="calc-topbar">
-    <a class="calc-topbar__brand" href="../index.html">
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M14 8v32M14 8h12c6 0 10 4 10 10s-4 10-10 10H14" stroke="url(#calcLogoGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <defs>
-          <linearGradient id="calcLogoGrad" x1="14" y1="8" x2="36" y2="40" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#4554A6"/>
-            <stop offset="1" stop-color="#f7abae"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span><span class="tac">tac</span><span class="assure">assure</span></span>
-    </a>
-    <a class="calc-topbar__cta" id="calc-booking-top" href="https://outlook.office.com/book/TacassureBookings@sheaney.ie/s/p-v-cciapUqYMl3AGRYfKw2" target="_blank" rel="noopener noreferrer">Book a call</a>
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="site-logo" href="../index.html#top" aria-label="Tacassure home">
+        <img class="site-logo__img" src="../assets/Tacassure Logo.png" width="200" height="48" alt="Tacassure" fetchpriority="high" decoding="async">
+        <span class="site-logo__fallback" aria-hidden="true">
+          <svg class="site-logo__mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 8v32M14 8h12c6 0 10 4 10 10s-4 10-10 10H14" stroke="url(#taCalcGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="taCalcGrad" x1="14" y1="8" x2="36" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#4554A6"/>
+                <stop offset="1" stop-color="#f7abae"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="site-logo__word"><span class="tac">tac</span><span class="assure">assure</span></span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="../index.html#benefits">Why it works</a></li>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#services">Services</a></li>
+          <li><a href="../index.html#process">How it works</a></li>
+          <li><a href="../index.html#why-tacassure">Why Tacassure</a></li>
+          <li><a href="index.html" class="is-active" aria-current="page">Calculator</a></li>
+          <li><a href="../index.html#testimonials">Results</a></li>
+          <li><a href="../index.html#faq">FAQs</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta-wrap">
+        <a class="btn btn--primary" id="calc-booking-top" data-booking href="#" target="_blank" rel="noopener noreferrer">Book a call</a>
+      </div>
+
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
+
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <a href="../index.html#benefits">Why it works</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#services">Services</a>
+    <a href="../index.html#process">How it works</a>
+    <a href="../index.html#why-tacassure">Why Tacassure</a>
+    <a href="index.html" aria-current="page">Calculator</a>
+    <a href="../index.html#testimonials">Results</a>
+    <a href="../index.html#faq">FAQs</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="btn btn--primary btn--block" data-booking href="#" target="_blank" rel="noopener noreferrer">Book a call</a>
+  </div>
 
   <main class="calc-container" id="calc-main">
     <header class="calc-header">
@@ -89,6 +129,7 @@
     <p class="calc-footnote">Figures are a client-side illustration only. Tacassure does not provide tax, employment, or legal advice. Commercial terms are agreed separately.</p>
   </main>
 
+  <script src="../js/site.js" defer></script>
   <script src="calculator.js" defer></script>
 </body>
 </html>
