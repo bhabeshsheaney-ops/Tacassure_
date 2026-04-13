@@ -299,6 +299,153 @@
     });
   }
 
+  function initTestimonialsCarousel() {
+    var root = $("[data-testimonial-carousel]");
+    if (!root) return;
+
+    var viewport = $(".testimonial-carousel__viewport", root);
+    var track = $("[data-carousel-track]", root);
+    var slides = $$("[data-carousel-slide]", root);
+    var prevBtn = $("[data-carousel-prev]", root);
+    var nextBtn = $("[data-carousel-next]", root);
+    var counter = $("[data-carousel-counter]", root);
+    var live = $("#testimonial-carousel-live");
+
+    var n = slides.length;
+    if (!n || !viewport || !track) return;
+
+    var index = 0;
+    var gap = 16;
+    var slideW = 0;
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function setTransition(enabled) {
+      if (reduceMotion) {
+        track.style.transition = "none";
+        return;
+      }
+      track.style.transition = enabled
+        ? "transform 0.5s var(--ease-hero)"
+        : "none";
+    }
+
+    function layout() {
+      var w = viewport.getBoundingClientRect().width;
+      if (!w) return;
+      var desktopThree = window.matchMedia("(min-width: 1100px)").matches;
+      var peek = window.matchMedia("(min-width: 900px)").matches;
+      if (desktopThree) {
+        slideW = Math.floor((w - gap * 2) / 3);
+      } else if (peek) {
+        slideW = Math.round(w * 0.84);
+      } else {
+        slideW = Math.round(w);
+      }
+      slides.forEach(function (el) {
+        el.style.flexShrink = "0";
+        el.style.flexBasis = slideW + "px";
+        el.style.width = slideW + "px";
+        el.style.maxWidth = slideW + "px";
+      });
+      track.style.display = "flex";
+      track.style.gap = gap + "px";
+      goTo(index, false);
+    }
+
+    function goTo(i, animate) {
+      index = ((i % n) + n) % n;
+      var desktopThree = window.matchMedia("(min-width: 1100px)").matches;
+      if (!animate || reduceMotion) {
+        setTransition(false);
+      } else {
+        setTransition(true);
+      }
+      var offset = index * (slideW + gap);
+      track.style.transform = "translateX(" + -offset + "px)";
+      if (counter && !desktopThree) counter.textContent = index + 1 + " / " + n;
+      if (live) {
+        live.textContent = "Testimonial " + (index + 1) + " of " + n;
+      }
+      slides.forEach(function (s, j) {
+        var featuredIndex = desktopThree ? (index + 1) % n : index;
+        var leftIndex = index;
+        var rightIndex = desktopThree ? (index + 2) % n : -1;
+        var on = j === featuredIndex;
+        var side = desktopThree && (j === leftIndex || j === rightIndex);
+        s.classList.toggle("t-card--carousel-active", on);
+        s.classList.toggle("t-card--carousel-side", side);
+        if (on) {
+          s.setAttribute("aria-current", "true");
+        } else {
+          s.removeAttribute("aria-current");
+        }
+      });
+
+      if (!animate || reduceMotion) {
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(function () {
+            if (!reduceMotion) {
+              setTransition(true);
+            }
+          });
+        });
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        goTo(index - 1, true);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        goTo(index + 1, true);
+      });
+    }
+
+    root.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goTo(index - 1, true);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goTo(index + 1, true);
+      }
+    });
+
+    var touchStartX = null;
+    viewport.addEventListener(
+      "touchstart",
+      function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+      },
+      { passive: true }
+    );
+    viewport.addEventListener(
+      "touchend",
+      function (e) {
+        if (touchStartX == null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(dx) < 50) return;
+        if (dx > 0) goTo(index - 1, true);
+        else goTo(index + 1, true);
+      },
+      { passive: true }
+    );
+
+    if (typeof ResizeObserver !== "undefined") {
+      var ro = new ResizeObserver(function () {
+        layout();
+      });
+      ro.observe(viewport);
+    } else {
+      window.addEventListener("resize", layout);
+    }
+
+    layout();
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initBookingLinks();
     initNav();
@@ -308,5 +455,6 @@
     initServiceTabs();
     initProcessTimeline();
     initFaq();
+    initTestimonialsCarousel();
   });
 })();
