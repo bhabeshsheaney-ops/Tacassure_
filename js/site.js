@@ -150,6 +150,78 @@
     io.observe(visual);
   }
 
+  function initHeroRoleCarousel() {
+    var root = $("[data-hero-role-carousel]");
+    if (!root) return;
+
+    var slots = $$("[data-hero-role-slot]", root);
+    var source = $$("[data-role-name]", root);
+    var live = $("[data-hero-role-live]", root);
+    if (!slots.length || !source.length) return;
+
+    var roles = source.map(function (el) {
+      return {
+        name: el.getAttribute("data-role-name") || "",
+        abbr: el.getAttribute("data-role-abbr") || "",
+      };
+    });
+
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var currentCenter = 0;
+    var centerSlot = Math.floor(slots.length / 2);
+    var timer = null;
+    var running = false;
+
+    function render(centerIndex, announce) {
+      currentCenter = ((centerIndex % roles.length) + roles.length) % roles.length;
+      slots.forEach(function (slot, i) {
+        var roleIndex = ((currentCenter - centerSlot + i) % roles.length + roles.length) % roles.length;
+        var role = roles[roleIndex];
+        slot.textContent = role.abbr;
+        slot.setAttribute("title", role.name);
+        slot.classList.toggle("is-active", i === centerSlot);
+      });
+      if (announce && live) {
+        live.textContent = "Active role: " + roles[currentCenter].name;
+      }
+    }
+
+    function step() {
+      render(currentCenter + 1, true);
+    }
+
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      running = false;
+    }
+
+    function start() {
+      if (reduceMotion || running) return;
+      timer = setInterval(step, 2800);
+      running = true;
+    }
+
+    render(0, true);
+    if (reduceMotion) return;
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            start();
+          } else {
+            stop();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(root);
+  }
+
   function initReveal() {
     var els = $$(".reveal, .stagger-children, .reveal-hero");
     if (!els.length) return;
@@ -451,6 +523,7 @@
     initNav();
     initScrollSpy();
     initHeroCounters();
+    initHeroRoleCarousel();
     initReveal();
     initServiceTabs();
     initProcessTimeline();
