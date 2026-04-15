@@ -4,6 +4,78 @@
     var BOOKING_URL =
       "https://outlook.office.com/book/TacassureBookings@sheaney.ie/s/p-v-cciapUqYMl3AGRYfKw2";
     var VA_RATE = 9;
+  var TASK_LIBRARY = [
+    {
+      category: "Quantity Surveyor Support",
+      tasks: [
+        "Cost estimating & BOQ preparation",
+        "Subcontractor valuations & payment certs",
+        "Variations tracking & claims management",
+        "Cashflow forecasting & cost reporting",
+        "Procurement tracking (materials/services)",
+      ],
+    },
+    {
+      category: "Project Coordination",
+      tasks: [
+        "RFI management & tracking",
+        "Drawing registers & distribution",
+        "Programme updates & progress reports",
+        "Subcontractor coordination/chasing",
+        "Short-term forecasting",
+      ],
+    },
+    {
+      category: "Document Control",
+      tasks: [
+        "As-built packages & O&Ms",
+        "Compliance folders & handover docs",
+        "Drawing issue logs & revisions",
+        "Technical submittals tracking",
+        "Health & safety file preparation",
+      ],
+    },
+    {
+      category: "CAD/BIM Assistance",
+      tasks: [
+        "Revit/AutoCAD drawing support",
+        "Model coordination & clash detection",
+        "Sheet extraction & plotting",
+        "3D model updates per engineer feedback",
+        "Fabrication/erection drawing prep",
+      ],
+    },
+    {
+      category: "Estimating Support",
+      tasks: [
+        "Bill of quantities take-offs",
+        "Subcontractor quote analysis",
+        "Rate build-ups & benchmarking",
+        "Tender document compilation",
+        "Cost plan development",
+      ],
+    },
+    {
+      category: "Construction Admin",
+      tasks: [
+        "Timesheet collection & validation",
+        "Purchase orders & invoice processing",
+        "Snag list compilation & tracking",
+        "Site diary & daily reports",
+        "Permit & compliance document tracking",
+      ],
+    },
+    {
+      category: "Executive Assistance",
+      tasks: [
+        "Calendar & meeting scheduling",
+        "Client communication coordination",
+        "Travel & accommodation booking",
+        "Board paper preparation",
+        "Presentation formatting",
+      ],
+    },
+  ];
 
     function easeOutExpo(t) {
       return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
@@ -60,6 +132,28 @@
       );
     }
 
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;");
+  }
+
+  function buildTaskOptionsHtml() {
+    var html =
+      '<option value="">Choose a predefined task (or enter custom below)</option>';
+    TASK_LIBRARY.forEach(function (group) {
+      html += '<optgroup label="' + escapeHtml(group.category) + '">';
+      group.tasks.forEach(function (task) {
+        html +=
+          '<option value="' + escapeHtml(task) + '">' + escapeHtml(task) + "</option>";
+      });
+      html += "</optgroup>";
+    });
+    return html;
+  }
+
     document.addEventListener("DOMContentLoaded", function () {
       var container = document.getElementById("task-rows");
       var addBtn = document.getElementById("calc-add-task");
@@ -109,10 +203,15 @@
       function rowTemplate() {
         var row = document.createElement("div");
         row.className = "calc-task-row";
+        var taskOptions = buildTaskOptionsHtml();
         row.innerHTML =
           '<div class="calc-task-row__task">' +
+          '<label class="calc-task-label"><span class="calc-task-label__text">Task library</span>' +
+          '<select class="calc-input task-select" name="taskPreset" aria-label="Select a predefined task">' +
+          taskOptions +
+          "</select></label>" +
           '<label class="calc-task-label"><span class="calc-task-label__text">Task</span>' +
-          '<input type="text" class="calc-input task-name" name="taskName" placeholder="e.g. Email management" autocomplete="off" aria-label="Task name"></label></div>' +
+          '<input type="text" class="calc-input task-name" name="taskName" placeholder="Or type a custom task" autocomplete="off" aria-label="Task name"></label></div>' +
           '<div class="calc-task-row__row2">' +
           '<div class="calc-task-row__field">' +
           '<label class="calc-task-label"><span class="calc-task-label__text">Hrs / week</span>' +
@@ -140,7 +239,31 @@
       function addRow() {
         var row = rowTemplate();
         container.appendChild(row);
-        row.querySelector(".task-remove").addEventListener("click", function () {
+        var removeBtn = row.querySelector(".task-remove");
+        var selectEl = row.querySelector(".task-select");
+        var nameEl = row.querySelector(".task-name");
+
+        if (selectEl && nameEl) {
+          selectEl.addEventListener("change", function () {
+            var selected = selectEl.value;
+            if (selected) {
+              nameEl.value = selected;
+            }
+          });
+
+          nameEl.addEventListener("input", function () {
+            var typed = nameEl.value.trim();
+            if (!typed) {
+              selectEl.value = "";
+              return;
+            }
+            if (selectEl.value !== typed) {
+              selectEl.value = "";
+            }
+          });
+        }
+
+        removeBtn.addEventListener("click", function () {
           if (container.querySelectorAll(".calc-task-row").length <= 1) return;
           row.remove();
           updateRemoveButtons();

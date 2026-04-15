@@ -157,6 +157,7 @@
     var slots = $$("[data-hero-role-slot]", root);
     var source = $$("[data-role-name]", root);
     var live = $("[data-hero-role-live]", root);
+    var label = $("[data-hero-role-label]", root);
     if (!slots.length || !source.length) return;
 
     var roles = source.map(function (el) {
@@ -171,16 +172,35 @@
     var centerSlot = Math.floor(slots.length / 2);
     var timer = null;
     var running = false;
+    var spacing = 28;
 
     function render(centerIndex, announce) {
       currentCenter = ((centerIndex % roles.length) + roles.length) % roles.length;
       slots.forEach(function (slot, i) {
-        var roleIndex = ((currentCenter - centerSlot + i) % roles.length + roles.length) % roles.length;
+        var offset = i - centerSlot;
+        var roleIndex =
+          ((currentCenter + offset) % roles.length + roles.length) % roles.length;
         var role = roles[roleIndex];
+        var absOff = Math.abs(offset);
+        var opacity = absOff === 0 ? 1 : absOff === 1 ? 0.6 : 0.3;
+        var z = 10 - absOff * 2;
+        var x = offset * spacing;
+        var isCenter = offset === 0;
         slot.textContent = role.abbr;
         slot.setAttribute("title", role.name);
-        slot.classList.toggle("is-active", i === centerSlot);
+        slot.classList.toggle("is-active", isCenter);
+        slot.style.left = "calc(50% + " + x + "px - " + (isCenter ? 24 : 18) + "px)";
+        slot.style.top = isCenter ? "4px" : "10px";
+        slot.style.opacity = String(opacity);
+        slot.style.zIndex = String(z);
       });
+      if (label) {
+        label.style.opacity = "0";
+        setTimeout(function () {
+          label.textContent = roles[currentCenter].name;
+          label.style.opacity = "1";
+        }, 180);
+      }
       if (announce && live) {
         live.textContent = "Active role: " + roles[currentCenter].name;
       }
