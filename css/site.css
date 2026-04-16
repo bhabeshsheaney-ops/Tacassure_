@@ -1967,6 +1967,88 @@ h3.display {
   grid-area: aside;
 }
 
+.contact-direct {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(35, 43, 43, 0.1);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.contact-direct__title {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(35, 43, 43, 0.52);
+}
+
+.contact-direct__link {
+  width: fit-content;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--indigo);
+  text-decoration: none;
+}
+
+.contact-direct__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-direct__linkedin-btn {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+  padding: 0.42rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(69, 84, 166, 0.26);
+  background: linear-gradient(
+    135deg,
+    rgba(69, 84, 166, 0.1),
+    rgba(69, 84, 166, 0.03)
+  );
+  color: var(--indigo);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform 0.2s var(--ease-out), border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-direct__linkedin-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(69, 84, 166, 0.45);
+  background: linear-gradient(
+    135deg,
+    rgba(69, 84, 166, 0.14),
+    rgba(69, 84, 166, 0.06)
+  );
+  box-shadow: 0 6px 14px rgba(69, 84, 166, 0.18);
+}
+
+.contact-direct__linkedin-btn:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+
+.contact-direct__linkedin-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a66c2;
+}
+
+.contact-direct__linkedin-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .floating-field {
   position: relative;
   margin-bottom: 1.35rem;
