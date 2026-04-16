@@ -2049,6 +2049,14 @@ h3.display {
   display: block;
 }
 
+.contact-direct__note {
+  margin: 0.2rem 0 0;
+  max-width: 20rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: rgba(35, 43, 43, 0.68);
+}
+
 .floating-field {
   position: relative;
   margin-bottom: 1.35rem;
