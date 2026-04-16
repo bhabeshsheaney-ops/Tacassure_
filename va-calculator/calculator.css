@@ -1,4 +1,4 @@
-/* Tacassure VA calculator — Tacassure brand tokens, product-grade layout discipline */
+/* Tacassure VA calculator — brand tokens (--font-body / --font-display from ../css/fonts.css) */
 
 :root {
   --indigo: #4554a6;
@@ -17,8 +17,6 @@
   --radius-pill: 999px;
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Michroma", var(--font-sans);
 }
 
 *,
@@ -41,13 +39,26 @@ body {
   margin: 0;
   min-height: 100vh;
   min-height: 100dvh;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.5;
   color: var(--charcoal);
   background: var(--canvas);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fixed site header from ../css/site.css — keep calculator content below it */
+body.calc-page {
+  padding-top: var(--nav-height);
+}
+
+/* Calculator canvas is busier than the homepage hero — keep the bar readable when not scrolled */
+body.calc-page .site-header:not(.is-scrolled) {
+  background: rgba(242, 244, 247, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--hairline);
 }
 
 .calc-bg {
@@ -68,104 +79,6 @@ body {
   background-size: 24px 24px;
   mask-image: linear-gradient(180deg, black 0%, transparent 85%);
   pointer-events: none;
-}
-
-.calc-skip {
-  position: absolute;
-  left: -9999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-.calc-skip:focus {
-  left: 1rem;
-  top: 1rem;
-  width: auto;
-  height: auto;
-  padding: 0.75rem 1rem;
-  background: var(--indigo);
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 8px;
-  z-index: 10;
-}
-
-.calc-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem clamp(1.25rem, 4vw, 2rem);
-  background: rgba(242, 244, 247, 0.72);
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  border-bottom: 1px solid var(--hairline);
-}
-
-.calc-topbar__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  color: var(--charcoal);
-  font-weight: 600;
-  font-size: 0.9375rem;
-  min-height: 44px;
-}
-
-.calc-topbar__brand svg {
-  width: 2rem;
-  height: 2rem;
-  flex-shrink: 0;
-}
-
-.calc-topbar__brand span {
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  letter-spacing: -0.02em;
-}
-
-.calc-topbar__brand .tac {
-  color: var(--indigo);
-}
-
-.calc-topbar__brand .assure {
-  color: var(--peach);
-}
-
-.calc-topbar__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 1.25rem;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: #fff;
-  text-decoration: none;
-  background: var(--indigo);
-  border-radius: var(--radius-pill);
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
-  box-shadow: 0 1px 2px rgba(35, 43, 43, 0.06);
-}
-
-.calc-topbar__cta:hover {
-  background: var(--indigo-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(69, 84, 166, 0.25);
-}
-
-.calc-topbar__cta:active {
-  transform: translateY(0);
 }
 
 .calc-container {
@@ -363,7 +276,7 @@ body {
 
 .calc-input {
   width: 100%;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -390,8 +303,23 @@ body {
   color: rgba(35, 43, 43, 0.35);
 }
 
+.task-select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(35, 43, 43, 0.6) 50%),
+    linear-gradient(135deg, rgba(35, 43, 43, 0.6) 50%, transparent 50%);
+  background-position:
+    calc(100% - 17px) calc(50% - 2px),
+    calc(100% - 12px) calc(50% - 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
+}
+
 .calc-btn-remove {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 600;
   color: #b91c1c;
@@ -417,7 +345,7 @@ body {
 
 .calc-btn-add {
   align-self: flex-start;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 600;
   color: #fff;
@@ -457,7 +385,7 @@ body {
 .calc-btn-calculate {
   flex: 1;
   min-width: min(100%, 200px);
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
@@ -482,7 +410,7 @@ body {
 }
 
 .calc-btn-clear {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--charcoal);
@@ -605,7 +533,7 @@ body {
   width: 100%;
   min-height: 52px;
   padding: 0 1.5rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 1rem;
   color: #fff;
