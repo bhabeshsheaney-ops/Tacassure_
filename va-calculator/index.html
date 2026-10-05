@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
+  <meta charset="UTF-8">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE8JRG2KXM"></script>
   <script>
@@ -30,16 +31,15 @@
   <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=9918012&fmt=gif" />
   </noscript>
 
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Estimate indicative annual savings when you delegate tasks to a Tacassure virtual assistant. Add tasks, hours, and your rates — illustrative model.">
   <title>VA savings calculator — Tacassure</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/fonts.css">
-  <link rel="stylesheet" href="../css/site.css">
-  <link rel="stylesheet" href="calculator.css">
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/va-calculator/calculator.css">
 </head>
 <body class="calc-page">
   <a class="skip-link" href="#calc-main">Skip to calculator</a>
@@ -47,8 +47,8 @@
 
   <header class="site-header" id="site-header">
     <div class="nav-inner">
-      <a class="site-logo" href="../index.html#top" aria-label="Tacassure home">
-        <img class="site-logo__img" src="../assets/Tacassure Logo.png" width="200" height="48" alt="Tacassure" fetchpriority="high" decoding="async">
+      <a class="site-logo" href="/#top" aria-label="Tacassure home">
+        <img class="site-logo__img" src="/assets/Tacassure Logo.png" width="200" height="48" alt="Tacassure" fetchpriority="high" decoding="async">
         <span class="site-logo__fallback" aria-hidden="true">
           <svg class="site-logo__mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M14 8v32M14 8h12c6 0 10 4 10 10s-4 10-10 10H14" stroke="url(#taCalcGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -65,15 +65,15 @@
 
       <nav aria-label="Primary">
         <ul class="nav-links">
-          <li><a href="../index.html#benefits">Why it works</a></li>
-          <li><a href="../index.html#about">About</a></li>
-          <li><a href="../index.html#services">Services</a></li>
-          <li><a href="../index.html#process">How it works</a></li>
-          <li><a href="../index.html#why-tacassure">Why Tacassure</a></li>
-          <li><a href="index.html" class="is-active" aria-current="page">Calculator</a></li>
-          <li><a href="../index.html#testimonials">Results</a></li>
-          <li><a href="../index.html#faq">FAQs</a></li>
-          <li><a href="../index.html#contact">Contact</a></li>
+          <li><a href="/#benefits">Why it works</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#process">How it works</a></li>
+          <li><a href="/#why-tacassure">Why Tacassure</a></li>
+          <li><a href="/va-calculator/" class="is-active" aria-current="page">Calculator</a></li>
+          <li><a href="/#testimonials">Results</a></li>
+          <li><a href="/#faq">FAQs</a></li>
+          <li><a href="/#contact">Contact</a></li>
         </ul>
       </nav>
 
@@ -88,15 +88,15 @@
   </header>
 
   <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
-    <a href="../index.html#benefits">Why it works</a>
-    <a href="../index.html#about">About</a>
-    <a href="../index.html#services">Services</a>
-    <a href="../index.html#process">How it works</a>
-    <a href="../index.html#why-tacassure">Why Tacassure</a>
-    <a href="index.html" aria-current="page">Calculator</a>
-    <a href="../index.html#testimonials">Results</a>
-    <a href="../index.html#faq">FAQs</a>
-    <a href="../index.html#contact">Contact</a>
+    <a href="/#benefits">Why it works</a>
+    <a href="/#about">About</a>
+    <a href="/#services">Services</a>
+    <a href="/#process">How it works</a>
+    <a href="/#why-tacassure">Why Tacassure</a>
+    <a href="/va-calculator/" aria-current="page">Calculator</a>
+    <a href="/#testimonials">Results</a>
+    <a href="/#faq">FAQs</a>
+    <a href="/#contact">Contact</a>
     <a class="btn btn--primary btn--block" data-booking href="#" target="_blank" rel="noopener noreferrer">Get Started</a>
   </div>
 
@@ -158,7 +158,18 @@
     <p class="calc-footnote">Figures are a client-side illustration only. Tacassure does not provide tax, employment, or legal advice. Commercial terms are agreed separately.</p>
   </main>
 
-  <script src="../js/site.js" defer></script>
-  <script src="calculator.js" defer></script>
+  <footer class="site-footer">
+    <p>© <span id="y"></span> Tacassure. Remote staffing for construction, engineering, and professional services in the UK and Ireland.</p>
+    <ul class="site-footer__links">
+      <li><a href="/privacy-policy">Privacy Policy</a></li>
+      <li><a href="/terms-of-service">Terms of Service</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+  <script src="/js/site.js" defer></script>
+  <script src="/va-calculator/calculator.js" defer></script>
 </body>
 </html>
