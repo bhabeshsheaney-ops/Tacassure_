@@ -1,0 +1,707 @@
+/* Referral programme — layout matching How it Works.pdf */
+
+.referral-page {
+  background-color: var(--soft-white);
+  background-image:
+    linear-gradient(rgba(69, 84, 166, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(69, 84, 166, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-attachment: scroll;
+}
+
+.referral-page .referral-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.referral-page .referral-hero::before {
+  content: "";
+  position: absolute;
+  width: 80vmin;
+  height: 80vmin;
+  border-radius: 50%;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(247, 171, 174, 0.35) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.referral-page .referral-hero > .referral-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.referral-page .site-header {
+  border-top: 3px solid var(--peach);
+}
+
+.referral-page .nav-links a.is-active::after {
+  transform: scaleX(0);
+}
+
+.referral-page .btn--peach {
+  color: #5a3140;
+}
+
+.referral-main {
+  padding-bottom: 3rem;
+}
+
+.referral-wrap {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.referral-hero {
+  padding: calc(var(--nav-height) + 2.25rem) 0 2.25rem;
+}
+
+.referral-hero__grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .referral-hero__grid {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.referral-kicker {
+  margin: 0 0 0.75rem;
+  color: var(--indigo);
+  font-size: clamp(1.35rem, 1rem + 1.6vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.referral-hero h1 {
+  margin: 0 0 1rem;
+  max-width: 16ch;
+  color: var(--indigo);
+}
+
+.referral-lede {
+  max-width: 40rem;
+  margin: 0 0 1.75rem;
+  font-size: 1.05rem;
+  color: rgba(35, 43, 43, 0.78);
+}
+
+.referral-hero__art {
+  justify-self: center;
+  width: min(100%, 32rem);
+}
+
+.referral-hero__art img,
+.referral-hero__art svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.referral-cta {
+  border-radius: 999px;
+  padding: 0.9rem 1.6rem;
+  font-size: 1.05rem;
+}
+
+.referral-how {
+  padding: 0.5rem 0 3rem;
+}
+
+.referral-how__label {
+  display: inline-flex;
+  margin: 0 0 1.5rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  background: var(--peach);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.referral-how__steps {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 900px) {
+  .referral-how__steps {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+.referral-how__step {
+  position: relative;
+  padding-right: 1rem;
+}
+
+@media (min-width: 900px) {
+  .referral-how__step:not(:last-child)::after {
+    content: "›";
+    position: absolute;
+    right: -0.15rem;
+    top: 0.15rem;
+    color: var(--indigo);
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+}
+
+.referral-how__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  margin-bottom: 0.7rem;
+  border-radius: 999px;
+  background: var(--indigo);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.referral-how__step h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.referral-how__step p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: rgba(35, 43, 43, 0.7);
+}
+
+.referral-routes-block {
+  padding: 1rem 0 2rem;
+}
+
+.referral-routes-block h2 {
+  margin: 0 0 0.75rem;
+  color: var(--indigo);
+}
+
+.referral-routes-block > p {
+  max-width: 40rem;
+  margin: 0 0 1.75rem;
+  color: rgba(35, 43, 43, 0.75);
+}
+
+.referral-routes {
+  display: grid;
+  gap: 1.35rem;
+}
+
+@media (min-width: 800px) {
+  .referral-routes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.referral-route {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.6rem 1.5rem;
+  border-radius: 22px;
+  min-height: 100%;
+}
+
+.referral-route--client {
+  background: linear-gradient(180deg, #eef0fb 0%, #f4f5fc 100%);
+  border: 1px solid rgba(69, 84, 166, 0.12);
+}
+
+.referral-route--open {
+  background: linear-gradient(180deg, #fdeeee 0%, #fff6f6 100%);
+  border: 1px solid rgba(247, 171, 174, 0.45);
+}
+
+.referral-route__top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.65rem 0 1.1rem;
+}
+
+.referral-route h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+
+.referral-route--open h2 {
+  color: #5a3140;
+}
+
+.referral-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 12px;
+  background: var(--indigo);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.referral-route--open .referral-icon {
+  background: #f4c4c7;
+  color: var(--indigo);
+}
+
+.referral-icon svg {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.referral-route__stat {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--indigo);
+}
+
+.referral-route__stat strong {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 1.6rem + 2vw, 3.15rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.referral-route__stat span {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.referral-route p {
+  margin: 0 0 1.35rem;
+  color: rgba(35, 43, 43, 0.72);
+}
+
+.referral-route .btn {
+  margin-top: auto;
+  width: 100%;
+  border-radius: 999px;
+}
+
+.referral-banners {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.5rem 0 2.75rem;
+}
+
+.referral-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0.95rem 1.25rem;
+  border-radius: 16px;
+  background: #3d4a96;
+  color: #fff;
+  font-size: 0.975rem;
+}
+
+.referral-banner svg {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.referral-split {
+  padding: 0.5rem 0 3rem;
+}
+
+.referral-split h2 {
+  margin: 0 0 0.4rem;
+  color: var(--indigo);
+}
+
+.referral-split > p {
+  margin: 0 0 1.5rem;
+  color: rgba(35, 43, 43, 0.72);
+}
+
+.referral-split__grid {
+  display: grid;
+  gap: 1.75rem 2.5rem;
+}
+
+@media (min-width: 800px) {
+  .referral-split__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.referral-split h3 {
+  margin: 0 0 0.75rem;
+  color: var(--indigo);
+  font-size: 1.15rem;
+}
+
+.referral-list {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.referral-list li {
+  margin-bottom: 0.55rem;
+  color: rgba(35, 43, 43, 0.78);
+}
+
+.referral-list li:last-child {
+  margin-bottom: 0;
+}
+
+.referral-split__note {
+  margin: 1.35rem 0 0;
+  color: var(--indigo);
+  font-weight: 600;
+}
+
+.referral-split__note a {
+  display: inline-flex;
+  margin-left: 0.35rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: var(--indigo);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.referral-page-head {
+  padding: calc(var(--nav-height) + 2.25rem) 0 1.5rem;
+}
+
+.referral-page-head h1 {
+  margin: 0 0 0.35rem;
+  color: var(--indigo);
+}
+
+.referral-form-kicker {
+  margin: 0 0 0.75rem;
+  color: var(--indigo);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.referral-page-head p {
+  max-width: 54rem;
+  margin: 0;
+  color: rgba(35, 43, 43, 0.8);
+}
+
+.referral-form-shell {
+  display: grid;
+  gap: 1.5rem 2rem;
+  margin: 1.5rem 0 1.25rem;
+  padding: 1.5rem 1.35rem 1.25rem;
+  border: 1.5px solid rgba(69, 84, 166, 0.28);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+@media (min-width: 800px) {
+  .referral-form-shell {
+    grid-template-columns: 1fr 1fr;
+    padding: 1.75rem 1.75rem 1.4rem;
+  }
+}
+
+.referral-form-col h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0 0 1.15rem;
+  font-size: 1.2rem;
+}
+
+.referral-form-col h3::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(69, 84, 166, 0.28);
+}
+
+.referral-field {
+  margin-bottom: 1.05rem;
+}
+
+.referral-field-row {
+  display: grid;
+  gap: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .referral-field-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.referral-field label {
+  display: block;
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.referral-req,
+.referral-hint {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.referral-req {
+  color: var(--indigo);
+}
+
+.referral-hint {
+  color: #e25b4c;
+}
+
+.referral-field input,
+.referral-field select,
+.referral-field textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  background: #fff;
+  border: 1.5px solid rgba(69, 84, 166, 0.28);
+  border-radius: 12px;
+}
+
+.referral-field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.referral-field input:focus,
+.referral-field select:focus,
+.referral-field textarea:focus {
+  outline: none;
+  border-color: var(--indigo);
+  box-shadow: 0 0 0 4px rgba(69, 84, 166, 0.12);
+}
+
+.referral-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234554a6' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.4rem;
+}
+
+.referral-extra {
+  margin: 0 0 1.25rem;
+  padding: 1.25rem 1.35rem 0.4rem;
+  border: 1.5px solid rgba(69, 84, 166, 0.28);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.referral-extra h3 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+
+.referral-checks {
+  margin: 0.5rem 0 1rem;
+}
+
+.referral-check {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  margin: 0 0 0.7rem;
+  font-size: 0.95rem;
+  color: rgba(35, 43, 43, 0.82);
+  cursor: pointer;
+}
+
+.referral-check input {
+  margin: 0.2rem 0 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+  accent-color: var(--indigo);
+}
+
+.referral-check a {
+  font-weight: 600;
+}
+
+.referral-form__error {
+  margin: 0 0 0.9rem;
+  color: #e25b4c;
+  font-weight: 700;
+  text-align: center;
+}
+
+.referral-form__success {
+  margin: 0 0 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: rgba(69, 84, 166, 0.1);
+  color: var(--charcoal);
+}
+
+.referral-form__success[hidden],
+.referral-form__error[hidden] {
+  display: none;
+}
+
+.referral-submit {
+  display: flex;
+  justify-content: center;
+  margin: 0.4rem 0 2rem;
+}
+
+.referral-submit .btn {
+  border-radius: 999px;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+
+.referral-rewards {
+  margin: 0 0 1.25rem;
+  padding: 1.35rem 1.25rem 1.2rem;
+  border-radius: 18px;
+  background: #eef0fb;
+  text-align: center;
+}
+
+.referral-rewards h2 {
+  margin: 0 0 1rem;
+  color: var(--indigo);
+  font-size: 1.35rem;
+}
+
+.referral-rewards__row {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 700px) {
+  .referral-rewards__row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.referral-rewards__item {
+  position: relative;
+  padding: 0.25rem 0.5rem;
+}
+
+@media (min-width: 700px) {
+  .referral-rewards__item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 2px;
+    background: var(--indigo);
+  }
+}
+
+.referral-rewards__item span {
+  display: block;
+  color: var(--indigo);
+  font-weight: 700;
+}
+
+.referral-rewards__item strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--font-display);
+  font-size: 2.15rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--indigo);
+}
+
+.referral-rewards__item strong em {
+  font-style: normal;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-left: 0.2rem;
+}
+
+.referral-usage {
+  max-width: 46rem;
+  margin: 0 auto 2.25rem;
+  text-align: center;
+  color: rgba(35, 43, 43, 0.75);
+}
+
+.referral-copy h2 {
+  margin: 0 0 0.65rem;
+  color: var(--indigo);
+  font-size: 1.25rem;
+}
+
+.referral-copy {
+  margin: 0 0 1.75rem;
+}
+
+.referral-contact h2 {
+  margin: 0 0 0.4rem;
+  color: var(--indigo);
+  font-size: 1.25rem;
+}
+
+.referral-contact p {
+  margin: 0 0 0.75rem;
+}
+
+.referral-contact .btn {
+  border-radius: 999px;
+}
+
+.referral-crumb {
+  display: inline-flex;
+  margin: 0 0 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--indigo);
+  text-decoration: none;
+}
+
+.referral-crumb:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.referral-page .site-footer {
+  background: transparent;
+  border-top: 0;
+}

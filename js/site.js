@@ -538,6 +538,26 @@
     layout();
   }
 
+  function initTeamProfiles() {
+    $$("[data-team-card]").forEach(function (card) {
+      var toggle = card.querySelector("[data-team-toggle]");
+      var details = card.querySelector("[data-team-details]");
+      if (!toggle || !details) return;
+
+      toggle.addEventListener("click", function () {
+        var open = toggle.getAttribute("aria-expanded") === "true";
+        var nextOpen = !open;
+        toggle.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+        var label = toggle.childNodes[0];
+        if (label && label.nodeType === 3) {
+          label.textContent = nextOpen ? "Hide full profile " : "Read full profile ";
+        }
+        details.hidden = !nextOpen;
+        card.classList.toggle("is-open", nextOpen);
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initBookingLinks();
     initNav();
@@ -549,5 +569,6 @@
     initProcessTimeline();
     initFaq();
     initTestimonialsCarousel();
+    initTeamProfiles();
   });
 })();
