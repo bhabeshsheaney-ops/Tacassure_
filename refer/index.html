@@ -120,22 +120,34 @@
         <p class="referral-how__label" id="how-it-works">How It works</p>
         <ol class="referral-how__steps">
           <li class="referral-how__step">
-            <span class="referral-how__num" aria-hidden="true">1</span>
+            <div class="referral-how__icon" aria-hidden="true">
+              <span class="referral-how__num">1</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-6-5.4-6-10a6 6 0 1 1 12 0c0 4.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            </div>
             <h3>Choose a Route</h3>
             <p>Review the two routes and select the one that applies to you.</p>
           </li>
           <li class="referral-how__step">
-            <span class="referral-how__num" aria-hidden="true">2</span>
+            <div class="referral-how__icon" aria-hidden="true">
+              <span class="referral-how__num">2</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+            </div>
             <h3>Submit the referral</h3>
             <p>Tell us about the separate business and the support it may require.</p>
           </li>
           <li class="referral-how__step">
-            <span class="referral-how__num" aria-hidden="true">3</span>
+            <div class="referral-how__icon" aria-hidden="true">
+              <span class="referral-how__num">3</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M20 20l-3.5-3.5M9 11h4M11 9v4"/></svg>
+            </div>
             <h3>We verify and contact</h3>
             <p>Tacassure reviews the referral and reaches out to the referred business.</p>
           </li>
           <li class="referral-how__step">
-            <span class="referral-how__num" aria-hidden="true">4</span>
+            <div class="referral-how__icon" aria-hidden="true">
+              <span class="referral-how__num">4</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 11V7a4 4 0 0 1 8 0v4"/><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M9.5 16.5l1.8 1.8 3.7-3.8"/></svg>
+            </div>
             <h3>Paid placement begins</h3>
             <p>The referred business must sign an agreement and begin a paid placement before a reward qualifies.</p>
           </li>
@@ -189,7 +201,7 @@
         <h2 class="display" id="eligibility">Eligibility</h2>
         <p>Check which referral route applies to your business</p>
         <div class="referral-split__grid">
-          <div>
+          <div class="referral-panel referral-panel--client">
             <h3>Existing Client Referral Programme</h3>
             <ul class="referral-list">
               <li>The Referrer must be an active Tacassure client in good standing.</li>
@@ -199,7 +211,7 @@
               <li>The referral must include accurate business and contact information and have the Referee’s permission to be introduced.</li>
             </ul>
           </div>
-          <div>
+          <div class="referral-panel referral-panel--open">
             <h3>Open Referral and Trial Programme</h3>
             <ul class="referral-list">
               <li>The Referrer is a genuine business and is not an existing Tacassure client when the referral is submitted.</li>
@@ -220,7 +232,7 @@
         <h2 class="display" id="terms">Programme Terms</h2>
         <p>Rewards and trials qualify only after the Referee’s business signs an agreement and begins a paid placement.</p>
         <div class="referral-split__grid">
-          <div>
+          <div class="referral-panel referral-panel--client">
             <h3>Existing Client Referral Programme</h3>
             <ul class="referral-list">
               <li>The first five referrals earn 20 hours each, while the sixth through tenth provide 25 hours per referral. Any referral from the eleventh onward yields 30 hours.</li>
@@ -231,7 +243,7 @@
               <li>Tacassure may verify, accept or decline referrals, and amend or withdraw the programme with reasonable notice.</li>
             </ul>
           </div>
-          <div>
+          <div class="referral-panel referral-panel--open">
             <h3>Open Referral and Trial Programme</h3>
             <ul class="referral-list">
               <li>One trial per eligible Referrer’s business: up to 20 hours in one agreed working week.</li>

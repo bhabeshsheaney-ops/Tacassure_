@@ -2,7 +2,7 @@
   "use strict";
 
   var SUCCESS_MESSAGE =
-    "Thank you for your referral. Our team will review the information and contact the referred business where appropriate. Submission does not guarantee acceptance or a reward. We will confirm the applicable programme route and contact you if the referral qualifies and progresses.";
+    "Thank you for submitting your referral! Your submission has been received successfully. We appreciate your support!";
 
   function param(name) {
     try {
