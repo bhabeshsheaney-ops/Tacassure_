@@ -1,0 +1,8 @@
+{
+  "name": "tacassure",
+  "private": true,
+  "description": "Tacassure marketing site",
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}
