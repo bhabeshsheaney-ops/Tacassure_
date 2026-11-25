@@ -99,7 +99,7 @@
           setMessage(successEl, "");
           setMessage(
             errorEl,
-            "Please complete the required fields and check both confirmations."
+            "Please complete the required fields and check all confirmations."
           );
           if (errorEl && errorEl.scrollIntoView) {
             errorEl.scrollIntoView({ block: "center" });

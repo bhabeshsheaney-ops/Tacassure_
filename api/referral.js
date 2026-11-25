@@ -47,7 +47,7 @@ function validatePayload(body) {
 
   for (var i = 0; i < required.length; i++) {
     if (!text(body[required[i]])) {
-      return "Please complete the required fields and check both confirmations.";
+      return "Please complete the required fields and check all confirmations.";
     }
   }
 
@@ -59,15 +59,15 @@ function validatePayload(body) {
   }
 
   if (text(body.consent_intro) !== "Yes" || text(body.consent_terms) !== "Yes") {
-    return "Please complete the required fields and check both confirmations.";
+    return "Please complete the required fields and check all confirmations.";
   }
 
   if (route === EXISTING_ROUTE) {
     if (text(body.referrer_is_client) !== "Yes" || !text(body.referrer_professional)) {
-      return "Please complete the required fields and check both confirmations.";
+      return "Please complete the required fields and check all confirmations.";
     }
   } else if (text(body.referrer_not_client) !== "Yes") {
-    return "Please complete the required fields and check both confirmations.";
+    return "Please complete the required fields and check all confirmations.";
   }
 
   return null;
